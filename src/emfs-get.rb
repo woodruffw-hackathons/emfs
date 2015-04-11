@@ -3,7 +3,8 @@
 require 'net/imap'
 require 'base64'
 
-file = ARGV.shift or abort("Usage: emfs-get <file>")
+file = ARGV.shift or abort("Usage: emfs-get <file> [destination]")
+dest = ARGV.shift or file
 file = File.basename(file)
 
 imap = Net::IMAP.new(ENV["EMFS_IMAP_SERVER"], {:ssl => true})
@@ -22,7 +23,7 @@ if data
 		uid += 1
 
 		if subj_line == file
-			File.open(file, "w") do |f|
+			File.open(dest, "w") do |f|
 				decoded = Base64.decode64(imap.fetch(uid, "BODY[TEXT]")[0].attr.values[0])
 				f.write(decoded)
 			end
