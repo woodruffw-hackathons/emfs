@@ -5,11 +5,10 @@ require 'net/smtp'
 require 'base64'
 
 file = ARGV.shift or abort("Usage: emfs-mv <file>")
-file = File.basename(file)
 
 if File.file?(file)
 	File.open(file, "r") do |f|
-		data = "Subject: #{file}\r\n"
+		data = "Subject: #{File.basename(file)}\r\n"
 		data += Base64.encode64(f.read)
 
 		smtp = Net::SMTP.new(ENV["EMFS_SMTP_SERVER"], 25)
@@ -34,5 +33,5 @@ if File.file?(file)
 	imap.logout
 	imap.disconnect
 else
-	puts "EMFS: #{file}: no such file."
+	puts "EMFS: #{File.basename(file)}: no such file."
 end
