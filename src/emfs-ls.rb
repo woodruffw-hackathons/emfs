@@ -18,3 +18,5 @@ end
 
 imap.logout
 imap.disconnect
+
+exit 0

@@ -12,7 +12,7 @@ class EMFS
 	end
 
 	def read_file(path)
-		`ruby ./emfs-get.rb #{File.basename(path)} /dev/stdout`
+		`ruby ./emfs-get.rb #{File.basename(path)} /dev/fd/1`
 	end
 end
 

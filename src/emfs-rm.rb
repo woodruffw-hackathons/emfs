@@ -30,10 +30,14 @@ if data
 
 	if !found
 		puts "EMFS: #{file}: not found."
+		exit 1
 	end
 else
 	puts "EMFS: No files."
+	exit 1
 end
 
 imap.logout
 imap.disconnect
+
+exit 0

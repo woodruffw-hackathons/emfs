@@ -4,7 +4,7 @@ require 'net/imap'
 require 'net/smtp'
 require 'base64'
 
-file = ARGV.shift or abort("Usage: emfs-mv <file>")
+file = ARGV.shift or abort("Usage: emfs-put <file>")
 
 if File.file?(file)
 	File.open(file, "r") do |f|
@@ -34,4 +34,7 @@ if File.file?(file)
 	imap.disconnect
 else
 	puts "EMFS: #{File.basename(file)}: no such file."
+	exit 1
 end
+
+exit 0
