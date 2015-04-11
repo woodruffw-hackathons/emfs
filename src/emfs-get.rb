@@ -3,7 +3,7 @@
 require 'net/imap'
 require 'base64'
 
-file = ARGV.shift.chomp or abort("Usage: emfs-get <file>")
+file = ARGV.shift or abort("Usage: emfs-get <file>")
 
 imap = Net::IMAP.new(ENV["EMFS_IMAP_SERVER"], {:ssl => true})
 imap.login(ENV["EMFS_IMAP_USER"], ENV["EMFS_IMAP_PASS"])
