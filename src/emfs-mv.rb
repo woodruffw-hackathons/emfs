@@ -5,6 +5,7 @@ require 'net/smtp'
 require 'base64'
 
 file = ARGV.shift or abort("Usage: emfs-mv <file>")
+file = File.basename(file)
 
 if File.file?(file)
 	File.open(file, "r") do |f|
