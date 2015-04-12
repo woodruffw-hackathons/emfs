@@ -10,7 +10,7 @@ dir=$1
 printf "Beginning sync..."
 
 for file in $(ruby emfs-ls.rb); do
-	ruby emfs-get.rb $file ${dir}/${file} &
+	ruby emfs-get.rb "$file" "${dir}/${file}" &
 done
 
 wait
