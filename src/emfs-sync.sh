@@ -22,11 +22,11 @@ while read event file; do
 	echo "Event: $event on $file"
 
 	if [[ "$event" = "CREATE" ]] || [[ "$event" = "MOVED_TO" ]]; then
-		ruby emfs-put.rb ${dir}/${file}
+		ruby emfs-put.rb "${dir}/${file}"
 	elif [[ "$event" = "MODIFY" ]]; then
-		ruby emfs-rm.rb ${dir}/${file}
-		ruby emfs-put.rb ${dir}/${file}
+		ruby emfs-rm.rb "${dir}/${file}"
+		ruby emfs-put.rb "${dir}/${file}"
 	elif [[ "$event" = "MOVED_FROM" ]] || [[ "$event" = "DELETE" ]]; then
-		ruby emfs-rm.rb ${dir}/${file}
+		ruby emfs-rm.rb "${dir}/${file}" &
 	fi
 done
